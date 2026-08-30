@@ -1,4 +1,4 @@
-import {test, Page, chromium, BrowserContext, Browser} from '@playwright/test';
+import {test, expect} from '@playwright/test';
 import {testFixture} from '../myFixtures/testFixture';
 
 
@@ -45,5 +45,11 @@ test.describe('NPS Test suite', () =>{
         console.log('Clicked on Government radio button successfully');
     }); // End of test 2
 
+    testFixture('Retirement Age Slider', async({page}) => {
+        await page.locator('#pensionretirementAge').fill('70');
+        await expect(page.locator('#pensionretirementAge')).toHaveValue('70');
+        console.log('Retirement age set to ' + await page.locator('xpath=//input[@id="pensionretirementAge"]').getAttribute('value') + ' successfully');
+        await page.screenshot({path: 'retirement-age-slider.png', fullPage: true});
+    }); // End of test 3
 
 }); // End of describe
