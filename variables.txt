@@ -1,0 +1,2 @@
+myName=Santhosh_Peter
+termToSearch=Playwright
