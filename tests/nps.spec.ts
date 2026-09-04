@@ -52,4 +52,16 @@ test.describe('NPS Test suite', () =>{
         await page.screenshot({path: 'retirement-age-slider.png', fullPage: true});
     }); // End of test 3
 
+
+    testFixture('Test YouTube', async({page}) => {
+        await page.goto('https://www.youtube.com/');
+        console.log('Launched YouTube successfully');
+        await page.locator('xpath=//input[@name="search_query"]').fill(process.env.termToSearch || 'hmmmmm');
+        await page.locator('xpath=//input[@name="search_query"]').press('Enter');
+        await page.waitForResponse(response => response.url().includes('search_query=Playwright') && response.status() === 200);
+        console.log('Search results for Playwright displayed successfully');
+        await page.screenshot({path: 'youtube-search-results.png', fullPage: true});
+
+    }); // End of test 4
+
 }); // End of describe

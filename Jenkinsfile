@@ -1,9 +1,26 @@
+def getValueFromVarsFile(String fileName, String key) {
+    def content = readFile(fileName)
+
+    for(String line : content.readLines()) {
+        if((line) && !line.startsWith("#") && line.contains("=")) {
+
+            def lineParts = line.split("=")
+
+            if(lineParts[0].trim()== key) {
+                return lineParts[1].trim()
+            }
+        }
+    }
+    return "nothing"
+}
+
 pipeline {
     agent any
 
     environment {
         RANDOMTEXT = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         RUN_ENVIRONMENT = 'Home'
+
     }
 
     parameters {
@@ -27,6 +44,18 @@ pipeline {
                 echo "Good Job! Keep going. Here is your random text : ${env.RANDOMTEXT}"
             }
         }
+
+        stage("Get value from vars file") {
+            steps{
+                echo "Getting value from vars file"
+                script{
+                    def value = getValueFromVarsFile('variables.txt', 'myName')
+                    echo "The value of myName is : ${value}"
+                }
+                
+            }
+        }
+
         stage ("Install node dependencies") {
             when {
                 expression {
@@ -47,6 +76,10 @@ pipeline {
         }
         stage("Execute test") {
             steps{
+
+                script {
+                    env.termToSearch = getValueFromVarsFile('variables.txt', 'termToSearch')
+                }
                 echo "Executing Playwright tests"
                 bat 'npx playwright test tests/nps.spec.ts --project=chromium --workers=3'
                 echo "Playwright tests execution completed"
