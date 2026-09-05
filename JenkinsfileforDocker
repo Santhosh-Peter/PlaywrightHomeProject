@@ -31,6 +31,17 @@ pipeline {
             }
         }
 
+        stage("Check Docker installation 1") {
+            steps {
+                bat '''
+                    echo ===== Checking Docker =====
+                    where docker
+                    docker --version
+                    docker info
+                '''
+            }
+        }
+
         stage("Check docker installation") {
             steps {
                 echo "Checking if Docker is installed"
@@ -58,7 +69,7 @@ pipeline {
             steps {
                 echo "Starting to run the docker container"
                 script {
-                    bat 'docker run -p 8080:3000 --name npscontainer -e SEARCHTERM="${env.SEARCHTERM}" npsimage:1.0'
+                    bat 'docker run -p 8080:3000 --name npscontainer -e SEARCHTERM="$SEARCHTERM" npsimage:1.0'
                 }
                 echo "Successfully ran the docker container"
             }

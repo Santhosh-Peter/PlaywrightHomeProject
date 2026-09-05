@@ -56,8 +56,8 @@ test.describe('NPS Test suite', () =>{
     testFixture('Test YouTube', async({page}) => {
         await page.goto('https://www.youtube.com/');
         console.log('Launched YouTube successfully');
-        console.log('Searching for term : ' + process.env.termToSearch!);
-        await page.locator('xpath=//input[@name="search_query"]').fill(process.env.termToSearch!);
+        console.log('Searching for term : ' + process.env.SEARCHTERM!);
+        await page.locator('xpath=//input[@name="search_query"]').fill(process.env.SEARCHTERM!);
         await page.locator('xpath=//input[@name="search_query"]').press('Enter');
         // await page.waitForResponse(response => response.url().includes('search_query=Playwright') && response.status() === 200);
         console.log('Search results for Playwright displayed successfully');
