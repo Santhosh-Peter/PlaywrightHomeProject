@@ -25,6 +25,7 @@ pipeline {
 
     parameters {
         string(name : 'GitUserName', description : 'Username to login to GitHub', defaultValue : 'Santhosh-Peter')
+        choice(name : 'RunTests', choices : ['Yes', 'No'], description : 'Do you want to run the tests?')
     }
     
     stages {
@@ -75,6 +76,11 @@ pipeline {
             }
         }
         stage("Execute test") {
+            when {
+                expression {
+                    params.RunTests == 'Yes'
+                }
+            }
             steps{
 
                 script {

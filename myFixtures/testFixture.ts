@@ -5,7 +5,7 @@ export const testFixture = baseTest.extend<{page : Page}>({ // Whatever you put 
     
     page : async({context}, use) => { // you can use any available fixture from playwright like context, browser, etc. and you can also use your own custom fixtures here.
     
-        const page = await context.newPage();
+    const page = await context.newPage();
         console.log('New page created successfully');
         await page.goto('https://npstrust.org.in/nps-calculator');
         console.log('Navigated to NPS calculator page successfully');

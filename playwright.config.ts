@@ -42,17 +42,17 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'], headless: false, viewport: { width: 1920, height: 1080 } },
+      use: { ...devices['Desktop Chrome'], headless: true, viewport: { width: 1920, height: 1080 } },
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'], headless: false, viewport: { width: 1920, height: 1080 } },
+      use: { ...devices['Desktop Firefox'], headless: true, viewport: { width: 1920, height: 1080 } },
     },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'], headless: false, viewport: { width: 1920, height: 1080 } },
+      use: { ...devices['Desktop Safari'], headless: true, viewport: { width: 1920, height: 1080 } },
     },
 
     /* Test against mobile viewports. */

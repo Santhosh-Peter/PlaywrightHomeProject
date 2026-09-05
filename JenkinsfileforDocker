@@ -1,0 +1,85 @@
+
+pipeline {
+
+    agent any
+
+    environment{
+        RUNENVIRONMENT = 'Home'
+        SEARCHTERM = ''
+    }
+
+    parameters {
+        string(name : 'GitUserName', description : 'Username to login to GitHub', defaultValue : 'Santhosh-Peter')
+        choice(name : 'RunTests', choices : ['Yes', 'No'], description : 'Do you want to run the tests?')
+    }
+
+    stages{
+
+        stage("Get code from GitHub repository") {
+
+            when {
+                expression {
+                    env.RUNENVIRONMENT == 'Home'
+                }
+            }
+
+            steps {
+                echo "Getting code from GitHub repository"
+                echo "The user name is : ${params.GitUserName}"
+                git branch: 'forJeankinsDocker', url: 'https://github.com/Santhosh-Peter/PlaywrightHomeProject.git'
+                echo "Successfully downloaded the code from GitHub repository"
+            }
+        }
+
+        stage("Check docker installation") {
+            steps {
+                echo "Checking if Docker is installed"
+                script {
+                    def dockerVersion = bat(script: 'docker --version', returnStdout: true).trim()
+                    echo "Available Docker version: ${dockerVersion}"
+                }
+            }
+        }
+
+        stage("Build the docker image") {
+
+            steps {
+                echo "Starting to build the docker image"
+                script {
+                    bat 'docker build -t npsimage:1.0 .'
+                }
+                echo "Successfully built the docker image"
+            }
+
+        }
+
+        stage("Run the docker container") {
+            steps {
+                echo "Starting to run the docker container"
+                script {
+                    bat 'docker run -p 8080:3000 --name npscontainer -e SEARCHTERM="${env.SEARCHTERM}" npsimage:1.0'
+                }
+                echo "Successfully ran the docker container"
+            }
+        }
+    }
+
+    post {
+            always {
+                echo "Cleaning up the docker container and image"
+                script {
+                    bat 'docker stop npscontainer'
+                    bat 'docker rm npscontainer'
+                    bat 'docker rmi npsimage:1.0'
+                }
+                echo "Successfully cleaned up the docker container and image"
+            }
+
+            success {
+                echo "The pipeline has completed successfully"
+            }
+            failure {
+                echo "The pipeline has failed"
+            }
+        }
+}
