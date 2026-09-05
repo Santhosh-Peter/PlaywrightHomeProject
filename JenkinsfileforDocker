@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo "Getting code from GitHub repository"
                 echo "The user name is : ${params.GitUserName}"
-                git branch: 'forJeankinsDocker', url: 'https://github.com/Santhosh-Peter/PlaywrightHomeProject.git'
+                git branch: 'jenkinsfordocker', url: 'https://github.com/Santhosh-Peter/PlaywrightHomeProject.git'
                 echo "Successfully downloaded the code from GitHub repository"
             }
         }
