@@ -77,15 +77,15 @@ pipeline {
     }
 
     post {
-            always {
-                echo "Cleaning up the docker container and image"
-                script {
-                    bat 'docker stop npscontainer'
-                    bat 'docker rm npscontainer'
-                    bat 'docker rmi npsimage:1.0'
-                }
-                echo "Successfully cleaned up the docker container and image"
-            }
+            // always {
+            //     echo "Cleaning up the docker container and image"
+            //     script {
+            //         bat 'docker stop npscontainer'
+            //         bat 'docker rm npscontainer'
+            //         bat 'docker rmi npsimage:1.0'
+            //     }
+            //     echo "Successfully cleaned up the docker container and image"
+            // }
 
             success {
                 echo "The pipeline has completed successfully"
