@@ -34,6 +34,7 @@ pipeline {
         stage("Check docker installation") {
             steps {
                 echo "Checking if Docker is installed"
+                bat 'docker --version'
                 script {
                     def dockerVersion = bat(script: 'docker --version', returnStdout: true).trim()
                     echo "Available Docker version: ${dockerVersion}"
