@@ -51,7 +51,7 @@ test.describe('NPS Test suite', () =>{
         await page.locator('xpath=//div[@id="block-nps-main-menu"]//a[text()="About NPS Trust"]').click();
         await page.waitForLoadState('networkidle');
         console.log('Navigated to About NPS Trust page successfully');
-    }
+    }); // End of test 3
 
 
 }); // End of describe
