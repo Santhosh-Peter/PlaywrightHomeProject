@@ -1,7 +1,6 @@
 import {test, Page, chromium, BrowserContext, Browser} from '@playwright/test';
 import {testFixture} from '../myFixtures/testFixture';
 
-
 test.describe('NPS Test suite', () =>{
 
     // let page: Page;
@@ -52,6 +51,10 @@ test.describe('NPS Test suite', () =>{
         await page.waitForLoadState('networkidle');
         console.log('Navigated to About NPS Trust page successfully');
     }); // End of test 3
+
+    testFixture.skip('Empty test', async({page}) => {
+        console.log('Implement this test later');
+    }); // End of test 4
 
 
 }); // End of describe
