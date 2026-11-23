@@ -45,5 +45,13 @@ test.describe('NPS Test suite', () =>{
         console.log('Clicked on Government radio button successfully');
     }); // End of test 2
 
+    testFixture('About NPS Trust', async({page}) => {
+        await page.locator('xpath=//div[@id="block-nps-main-menu"]//li/a[text()="NPS Architecture"]').hover();
+        await page.locator('xpath=//div[@id="block-nps-main-menu"]//a[text()="NPS Trust"]/parent::li').click();
+        await page.locator('xpath=//div[@id="block-nps-main-menu"]//a[text()="About NPS Trust"]').click();
+        await page.waitForLoadState('networkidle');
+        console.log('Navigated to About NPS Trust page successfully');
+    }
+
 
 }); // End of describe
