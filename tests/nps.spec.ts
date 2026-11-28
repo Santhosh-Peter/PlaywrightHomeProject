@@ -51,13 +51,31 @@ test.describe('NPS Test suite', () =>{
         await page.waitForLoadState('networkidle');
         console.log('Navigated to About NPS Trust page successfully');
     }); // End of test 3
-
-    testFixture('Empty test', async({page}) => {
-        console.log('This is an empty test');
-        console.log('-----------------------------');
-    }); // End of test 4
-
     
-    // placedholder for future tests
+    // test.beforeAll(async() => {
+    //     browser = await chromium.launch({channel: 'msedge', headless: false});
+    //     console.log('Browser launched successfully');
+    //     context = await browser.newContext();
+    //     console.log('Browser context created successfully');
+    // }); // End of beforeAll
+
+    // test.beforeEach(async() => {
+    //     page = await context.newPage();
+    //     console.log('New page created successfully');
+    //     await page.goto('https://npstrust.org.in/nps-calculator');
+    //     console.log('Navigated to NPS calculator page successfully');
+    // }); // End of beforeEach
+
+    // test.afterEach(async() => {
+    //     await page.close();
+    //     console.log('Page closed successfully');
+    // }); // End of afterEach
+
+    // test.afterAll(async() => {
+    //     await context.close();
+    //     console.log('Browser context closed successfully');
+    //     await browser.close();
+    //     console.log('Browser closed successfully');
+    // }); // End of afterAll
 
 }); // End of describe
