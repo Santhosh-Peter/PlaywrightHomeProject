@@ -52,10 +52,14 @@ test.describe('NPS Test suite', () =>{
         console.log('Navigated to About NPS Trust page successfully');
     }); // End of test 3
 
-    testFixture.skip('Empty test', async({page}) => {
+    testFixture('Empty test', async({page}) => {
         console.log('This test is skipped');
-        console.log('Implement this test later');
+        console.log('This is an empty test');
+        console.log('-----------------------------');
     }); // End of test 4
+
+    testFixture('Empty test 2', async({page}) => {
+    }); // End of test 5
 
 
 }); // End of describe
