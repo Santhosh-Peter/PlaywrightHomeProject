@@ -58,8 +58,7 @@ test.describe('NPS Test suite', () =>{
         console.log('-----------------------------');
     }); // End of test 4
 
-    testFixture('Empty test 2', async({page}) => {
-    }); // End of test 5
-
+    
+    // placedholder for future tests
 
 }); // End of describe
