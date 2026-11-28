@@ -53,6 +53,7 @@ test.describe('NPS Test suite', () =>{
     }); // End of test 3
 
     testFixture.skip('Empty test', async({page}) => {
+        console.log('This test is skipped');
         console.log('Implement this test later');
     }); // End of test 4
 
